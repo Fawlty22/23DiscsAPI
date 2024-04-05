@@ -1,24 +1,21 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { DiscRepository } from './repository/disc.repository';
+import { Repository } from 'typeorm'
 import { Disc } from './entity/disc.entity';
 
 @Injectable()
 export class DiscService {
   constructor(
-    @InjectRepository(DiscRepository)
-    private readonly discRepository: DiscRepository,
+    @InjectRepository(Disc)
+    private readonly discRepository: Repository<Disc>,
   ) {}
 
   async createDisc(discData: any): Promise<Disc> {
-    // Implement logic to create a new disc
     return await this.discRepository.save(discData);
   }
 
-//   async getDiscById(discId: number): Promise<Disc> {
-//     // Implement logic to get a disc by ID
-//     return await this.discRepository.findOneBy({discId});
-//   }
+  async getDiscById(discId: number): Promise<Disc> {
+    return await this.discRepository.findOneBy({id:discId});
+  }
 
-  // Add more methods for CRUD operations and business logic as needed
 }

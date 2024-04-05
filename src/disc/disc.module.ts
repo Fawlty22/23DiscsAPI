@@ -4,12 +4,11 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DiscService } from './disc.service';
 import { DiscController } from './disc.controller';
-import { DiscRepository } from './repository/disc.repository';
 import { Disc } from './entity/disc.entity'; 
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Disc, DiscRepository])], 
+  imports: [TypeOrmModule.forFeature([Disc])], 
   controllers: [DiscController],
-  providers: [DiscService, DiscRepository], 
+  providers: [DiscService], 
 })
 export class DiscModule {}

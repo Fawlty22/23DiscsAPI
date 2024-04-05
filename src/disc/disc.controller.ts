@@ -10,10 +10,10 @@ export class DiscController {
     return await this.discService.createDisc(discData);
   }
 
-//   @Get(':id')
-//   async getDiscById(@Param('id') discId: number): Promise<any> {
-//     return await this.discService.getDiscById(discId);
-//   }
+  @Get(':id')
+  async getDiscById(@Param('id') discId: number): Promise<any> {
+    return await this.discService.getDiscById(discId);
+  }
 
   // Add more controller methods for handling HTTP requests as needed
 }
