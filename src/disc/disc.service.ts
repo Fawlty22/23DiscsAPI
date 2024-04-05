@@ -22,10 +22,10 @@ export class DiscService {
     return await this.discRepository.findOneBy({id:discId});
   }
 
-  async searchForDiscByName(name: string): Promise<DiscSearchResult> {
+  async searchForDiscByName(name: string): Promise<DiscSearchResult | DiscSearchResult[]> {
     try {
-      const discData = await fetch(this.discUrl + name);
-      const response: DiscSearchResult = await discData.json();
+      const discData = await fetch(this.discUrl + encodeURI(name));
+      const response: DiscSearchResult | DiscSearchResult[] = await discData.json();
       return response;
     } catch(e) {
       throw new HttpException('Error searching for disc' + name, e);

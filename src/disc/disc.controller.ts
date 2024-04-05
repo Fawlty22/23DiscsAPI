@@ -14,7 +14,6 @@ export class DiscController {
 
   @Get('search')
   async searchForDiscs(@Query('name') discName: string): Promise<any> {
-    console.log(discName)
     return await this.discService.searchForDiscByName(discName);
   }
 
