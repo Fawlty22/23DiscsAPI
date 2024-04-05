@@ -1,4 +1,4 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { HttpException, Injectable, UnauthorizedException } from '@nestjs/common';
 import { UserService } from 'src/user/user.service';
 import { LoginDto } from './interface/login.interface';
 import { JwtService } from '@nestjs/jwt';
@@ -13,7 +13,7 @@ export class LoginService {
       loginInfo.password,
       user.password,
     );
-    if (!isPasswordMatch) throw new UnauthorizedException();
+    if (!isPasswordMatch) throw new HttpException('Incorrect credentials', 401);
     const payload = { sub: user.id, username: user.username };
     return {
       access_token: await this.jwtService.signAsync(payload),
