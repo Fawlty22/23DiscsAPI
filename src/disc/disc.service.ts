@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { DeleteResult, Repository } from 'typeorm'
 import { Disc } from './entity/disc.entity';
@@ -6,6 +6,7 @@ import { DiscDto } from './dto/disc.dto';
 
 @Injectable()
 export class DiscService {
+  discUrl: string = 'https://discit-api.fly.dev/disc?name=';
   constructor(
     @InjectRepository(Disc)
     private readonly discRepository: Repository<Disc>,
@@ -18,6 +19,16 @@ export class DiscService {
 
   async getDiscById(discId: number): Promise<Disc> {
     return await this.discRepository.findOneBy({id:discId});
+  }
+
+  async searchForDiscByName(name: string): Promise<any> {
+    try {
+      const discData = await fetch(this.discUrl + name);
+      const response = await discData.json();
+      return response;
+    } catch(e) {
+      throw new HttpException('Error searching for disc' + name, e);
+    }
   }
 
   async updateDisc(discData: Disc): Promise<Disc> {

@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Get, Param, Put, Delete } from '@nestjs/common';
+import { Controller, Post, Body, Get, Param, Put, Delete, Query } from '@nestjs/common';
 import { DiscService } from './disc.service';
 import { Disc } from './entity/disc.entity';
 import { DeleteResult } from 'typeorm';
@@ -8,12 +8,18 @@ export class DiscController {
   constructor(private readonly discService: DiscService) {}
 
   @Post()
-  async createDisc(@Body() discData: any): Promise<any> {
+  async createDisc(@Body() discData: any): Promise<Disc> {
     return await this.discService.createDisc(discData);
   }
 
+  @Get('search')
+  async searchForDiscs(@Query('name') discName: string): Promise<any> {
+    console.log(discName)
+    return await this.discService.searchForDiscByName(discName);
+  }
+
   @Get(':id')
-  async getDiscById(@Param('id') discId: number): Promise<any> {
+  async getDiscById(@Param('id') discId: number): Promise<Disc> {
     return await this.discService.getDiscById(discId);
   }
 
