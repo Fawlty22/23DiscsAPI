@@ -7,6 +7,7 @@ import { DiscModule } from './disc/disc.module';
 import { ConfigService, ConfigModule } from '@nestjs/config';
 import { OrmService } from './config/typeorm.config';
 import {loadExternalConfigs} from './config/configuration';
+import { LoginModule } from './login/login.module';
 
 @Module({
   imports: [
@@ -16,7 +17,7 @@ import {loadExternalConfigs} from './config/configuration';
     }),
     TypeOrmModule.forRootAsync({useClass: OrmService, inject: [ConfigService]}),
     UserModule, 
-    DiscModule
+    DiscModule, LoginModule
 ],
   controllers: [AppController],
   providers: [AppService],

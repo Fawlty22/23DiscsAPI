@@ -5,14 +5,17 @@ export class User {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
-  pdga_number: string;
+  @Column({name: 'pdga_number'})
+  pdgaNumber: string;
+
+  @Column({name: 'first_name'})
+  firstName: string;
 
   @Column()
-  first_name: string;
+  email: string;
 
-  @Column()
-  last_name: string;
+  @Column({name: 'last_name'})
+  lastName: string;
 
   @Column()
   username: string;
