@@ -8,6 +8,7 @@ import { ConfigService, ConfigModule } from '@nestjs/config';
 import { OrmService } from './config/typeorm.config';
 import {loadExternalConfigs} from './config/configuration';
 import { LoginModule } from './login/login.module';
+import { JwtModule } from '@nestjs/jwt';
 
 @Module({
   imports: [
@@ -16,6 +17,11 @@ import { LoginModule } from './login/login.module';
       isGlobal: true
     }),
     TypeOrmModule.forRootAsync({useClass: OrmService, inject: [ConfigService]}),
+    JwtModule.register({
+      global: true,
+      secret: 'changeme',
+      signOptions: { expiresIn: '60s'}
+    }),
     UserModule, 
     DiscModule, LoginModule
 ],

@@ -27,6 +27,10 @@ export class UserService {
     return await this.userRepository.findOneBy({ id: userId });
   }
 
+  async getUserByUsername(username: string): Promise<User> {
+    return await this.userRepository.findOneBy({ username: username });
+  }
+
   async updateUser(userData: User): Promise<User> {
     return await this.userRepository.save(userData);
   }
