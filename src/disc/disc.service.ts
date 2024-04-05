@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { DiscRepository } from './disc.repository';
-import { Disc } from '../../disc/entity/disc.entity';
+import { DiscRepository } from './repository/disc.repository';
+import { Disc } from './entity/disc.entity';
 
 @Injectable()
 export class DiscService {
@@ -15,10 +15,10 @@ export class DiscService {
     return await this.discRepository.save(discData);
   }
 
-  async getDiscById(discId: number): Promise<Disc> {
-    // Implement logic to get a disc by ID
-    return await this.discRepository.findOne(discId);
-  }
+//   async getDiscById(discId: number): Promise<Disc> {
+//     // Implement logic to get a disc by ID
+//     return await this.discRepository.findOneBy({discId});
+//   }
 
   // Add more methods for CRUD operations and business logic as needed
 }

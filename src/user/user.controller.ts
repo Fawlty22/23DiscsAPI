@@ -10,10 +10,10 @@ export class UserController {
     return await this.userService.createUser(userData);
   }
 
-  @Get(':id')
-  async getUserById(@Param('id') userId: number): Promise<any> {
-    return await this.userService.getUserById(userId);
-  }
+//   @Get(':id')
+//   async getUserById(@Param('id') userId: number): Promise<any> {
+//     return await this.userService.getUserById(userId);
+//   }
 
   // Add more controller methods for handling HTTP requests as needed
 }
