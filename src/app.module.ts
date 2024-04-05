@@ -4,21 +4,17 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './user/user.module';
 import { DiscModule } from './disc/disc.module';
-import typeOrmConfig from './config/typeorm.config'
+import { ConfigService, ConfigModule } from '@nestjs/config';
+import { OrmService } from './config/typeorm.config';
+import {loadExternalConfigs} from './config/configuration';
+
 @Module({
   imports: [
-    TypeOrmModule.forRoot(
-      {
-        type: 'mysql',
-        host: 'discs23-db-dev.cab78zdnf7fa.us-east-1.rds.amazonaws.com',
-        port: 3306,
-        username: 'admin',
-        password: 'fdRBPfSQAETZ9YyuVRob',
-        database: 'discsdb_dev',
-        entities: [__dirname + '/**/*.entity{.ts,.js}'],
-        synchronize: true,
-      }
-    ),
+    ConfigModule.forRoot({
+      load: [loadExternalConfigs],
+      isGlobal: true
+    }),
+    TypeOrmModule.forRootAsync({useClass: OrmService, inject: [ConfigService]}),
     UserModule, 
     DiscModule
 ],
