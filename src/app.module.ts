@@ -21,7 +21,7 @@ import { APP_GUARD } from "@nestjs/core";
     TypeOrmModule.forRootAsync({useClass: OrmService, inject: [ConfigService]}),
     JwtModule.register({
       global: true,
-      secret: 'changeme',
+      secret: 'pickleweasel',
       signOptions: { expiresIn: '60s'}
     }),
     UserModule, 

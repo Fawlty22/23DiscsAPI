@@ -27,13 +27,15 @@ import { ALLOW_UNAUTHORIZED_ACCESS } from 'src/common/decorators/allow-unauthori
       if (!token) {
         throw new UnauthorizedException();
       }
+    
       try {
         const payload = await this.jwtService.verifyAsync(
           token,
           {
-            secret: 'changeme'
+            secret: 'pickleweasel'
           }
         );
+        
         // 💡 We're assigning the payload to the request object here
         // so that we can access it in our route handlers
         request['user'] = payload;
