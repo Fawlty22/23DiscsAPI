@@ -14,7 +14,7 @@ export class DiscService {
   ) {}
 
   async createDisc(discData: DiscDto): Promise<Disc> {
-    const disc = this.discRepository.create(discData);
+    const disc = await this.discRepository.create(discData);
     return await this.discRepository.save(disc);
   }
 

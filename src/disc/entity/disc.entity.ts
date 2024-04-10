@@ -9,6 +9,9 @@ export class Disc {
   @Column({name: 'user_id'})
   userId: number;
 
+  @Column()
+  bag: boolean;
+
   @ManyToOne(() => User)
   @JoinColumn({ name: 'user_id' })
   user: User;

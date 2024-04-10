@@ -1,7 +1,7 @@
 export class UserDto {
-    pdga_number: string;
-    first_name: string;
-    last_name: string;
+    pdgaNumber: string;
+    firstName: string;
+    lastName: string;
     email:string;
     username: string;
     password: string;
