@@ -22,7 +22,7 @@ import { APP_GUARD } from "@nestjs/core";
     JwtModule.register({
       global: true,
       secret: 'pickleweasel',
-      signOptions: { expiresIn: '10m'}
+      signOptions: { expiresIn: '60m'}
     }),
     UserModule, 
     DiscModule, 

@@ -14,7 +14,7 @@ export class LoginService {
       user.password,
     );
     if (!isPasswordMatch) throw new HttpException('Incorrect credentials', 401);
-    const payload = { sub: user.id, username: user.username };
+    const payload = { userId: user.id, username: user.username };
     return {
       access_token: await this.jwtService.signAsync(payload),
     };

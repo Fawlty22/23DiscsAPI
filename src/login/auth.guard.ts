@@ -35,6 +35,8 @@ import { ALLOW_UNAUTHORIZED_ACCESS } from 'src/common/decorators/allow-unauthori
             secret: 'pickleweasel'
           }
         );
+
+        console.log(payload);
         
         // 💡 We're assigning the payload to the request object here
         // so that we can access it in our route handlers
