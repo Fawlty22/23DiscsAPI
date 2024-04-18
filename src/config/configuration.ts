@@ -25,7 +25,7 @@ export async function loadExternalConfigs(): Promise<any> {
 async function retrieveSecrets() {
     const region = "us-east-1";
     const client = new aws.SecretsManager({ region });
-    const SecretId = "mmi";
+    const SecretId = "23DiscsAPISecrets";
 
     return new Promise<string>((resolve, reject) => {
         client.getSecretValue({ SecretId }, (err, data) => {
