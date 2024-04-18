@@ -27,6 +27,7 @@ async function retrieveSecrets() {
     const client = new aws.SecretsManager({ region });
     const SecretId = "23DiscsAPISecrets";
 
+    console.log(client)
     return new Promise<string>((resolve, reject) => {
         client.getSecretValue({ SecretId }, (err, data) => {
             if (err) {
