@@ -12,10 +12,9 @@ export async function loadExternalConfigs(): Promise<any> {
                 dbUsername: secretsJSON['dbUsername'],
                 dbPassword: secretsJSON['dbPassword'],
                 dbName: secretsJSON['dbName'],
-                accessKeyId: secretsJSON['accessKeyId'],
-                secretAccessKey: secretsJSON['secretAccessKey'],
                 region: secretsJSON['region'],
-                uiUrl: secretsJSON['uiUrl']
+                uiUrl: secretsJSON['uiUrl'],
+                jwtSecret: secretsJSON['jwtSecret'],
             });
         }
     });
@@ -23,6 +22,7 @@ export async function loadExternalConfigs(): Promise<any> {
 
 
 async function retrieveSecrets() {
+    console.log('retireve')
     const region = "us-east-1";
     const client = new aws.SecretsManager({ region });
     const SecretId = "23DiscsAPISecrets";
