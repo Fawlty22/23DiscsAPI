@@ -15,6 +15,8 @@ export async function loadExternalConfigs(): Promise<any> {
                 region: secretsJSON['region'],
                 uiUrl: secretsJSON['uiUrl'],
                 jwtSecret: secretsJSON['jwtSecret'],
+                accessKeyId: secretsJSON['accessKeyId'],
+                secretAccessKey: secretsJSON['secretAccessKey'],
             });
         }
     });
