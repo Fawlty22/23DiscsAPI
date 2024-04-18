@@ -12,12 +12,23 @@ export class UserService {
   ) {}
 
   async createUser(userData: UserDto): Promise<User> {
-   const user = this.userRepository.create(userData);
+    const saltRounds = 10;
+    const bcrypt = require('bcrypt');
+    const hashedPassword = await bcrypt.hash(userData.password, saltRounds);
+
+    const user = this.userRepository.create({
+      ...userData,
+      password: hashedPassword
+    });
     return await this.userRepository.save(user);
   }
 
   async getUserById(userId: number): Promise<User> {
-    return await this.userRepository.findOneBy({id:userId});
+    return await this.userRepository.findOneBy({ id: userId });
+  }
+
+  async getUserByUsername(username: string): Promise<User> {
+    return await this.userRepository.findOneBy({ username: username });
   }
 
   async updateUser(userData: User): Promise<User> {
@@ -25,7 +36,6 @@ export class UserService {
   }
 
   async deleteUser(userId: number): Promise<DeleteResult> {
-  return await this.userRepository.delete(userId);
+    return await this.userRepository.delete(userId);
   }
-
 }

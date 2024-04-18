@@ -6,8 +6,11 @@ export class Disc {
   @PrimaryGeneratedColumn()
   id: number;
 
+  @Column({name: 'user_id'})
+  userId: number;
+
   @Column()
-  user_id: number;
+  bag: boolean;
 
   @ManyToOne(() => User)
   @JoinColumn({ name: 'user_id' })

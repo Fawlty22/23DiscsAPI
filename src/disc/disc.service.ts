@@ -14,12 +14,16 @@ export class DiscService {
   ) {}
 
   async createDisc(discData: DiscDto): Promise<Disc> {
-    const disc = this.discRepository.create(discData);
-    return await this.discRepository.save(discData);
+    const disc = await this.discRepository.create(discData);
+    return await this.discRepository.save(disc);
   }
 
   async getDiscById(discId: number): Promise<Disc> {
     return await this.discRepository.findOneBy({id:discId});
+  }
+
+  async getCollectionById(id: number): Promise<Disc[]> {
+    return await this.discRepository.find({where: {userId: id}});
   }
 
   async searchForDiscByName(name: string): Promise<DiscSearchResult | DiscSearchResult[]> {
