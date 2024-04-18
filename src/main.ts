@@ -6,7 +6,11 @@ async function bootstrap() {
   const configService = app.get<ConfigService>(ConfigService)
   
   // TODO: update CORS
-  app.enableCors();
+  app.enableCors({
+    origin: configService.get('uiUrl'),
+    credentials: true,
+    exposedHeaders: ['set-cookie'],
+  });
   
   let AWS = require("aws-sdk");
   AWS.config.update({
