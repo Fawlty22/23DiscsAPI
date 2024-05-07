@@ -7,7 +7,7 @@ async function bootstrap() {
   
   // TODO: update CORS
   app.enableCors({
-    origin: '*',
+    origin: configService.get('uiUrl'),
     credentials: true,
     exposedHeaders: ['set-cookie'],
   });
