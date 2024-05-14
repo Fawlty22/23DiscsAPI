@@ -1,12 +1,15 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, HttpCode, HttpStatus } from '@nestjs/common';
 import { AppService } from './app.service';
+import { AllowUnauthorizedAccess } from './common/decorators/allow-unauthorized.decorator';
 
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  @AllowUnauthorizedAccess()
+  @HttpCode(HttpStatus.OK)
+  @Get('health')
+  getHealth(): HttpStatus {
+    return this.appService.getHealth();
   }
 }
